@@ -1,0 +1,164 @@
+<div class="center-block container section  center break-word" *ngIf="animal">
+
+  <div class="section z-depth-1 round">
+
+    <div class="row">
+      <h4>{{animal.name}}</h4>
+      <h5 class="medium-text">$ {{animal.price}}</h5>
+      <small>Posted {{animal.createdOn | dateAgo}}</small>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <img class="round responsive-img z-depth-1 center-block" [src]="animal.image" alt="">
+      </div>
+    </div>
+
+    <h4>Info</h4>
+    <div class="row">
+      <div class="col s10 offset-s1">
+        <table class="bordered striped">
+          <thead>
+          <tr>
+            <th>Item</th>
+            <th>Value</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr>
+            <td>Name</td>
+            <td>{{animal.name}}</td>
+          </tr>
+          <tr>
+            <td>Age</td>
+            <td>{{animal.age}}</td>
+          </tr>
+          <tr>
+            <td>Color</td>
+            <td>{{animal.color}}</td>
+          </tr>
+          <tr>
+            <td>Price</td>
+            <td>{{animal.price}}</td>
+          </tr>
+          <tr *ngIf="animal.breed">
+            <td>Breed</td>
+            <td>{{animal.breed}}</td>
+          </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+    <h4>Reactions</h4>
+    <div *ngIf="animal.reactions" class="row">
+      <div class="col s10 offset-s1">
+        <table class="bordered striped">
+          <thead>
+          <tr>
+            <th>Reaction</th>
+            <th>Count</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Like</td>
+            <td>{{animal.reactions.like}}</td>
+          </tr>
+          <tr>
+            <td>Love</td>
+            <td>{{animal.reactions.love}}</td>
+          </tr>
+          <tr>
+            <td>Haha</td>
+            <td>{{animal.reactions.haha}}</td>
+          </tr>
+          <tr>
+            <td>Wow</td>
+            <td>{{animal.reactions.wow}}</td>
+          </tr>
+          <tr>
+            <td>Sad</td>
+            <td>{{animal.reactions.sad}}</td>
+          </tr>
+          <tr>
+            <td>Angry</td>
+            <td>{{animal.reactions.angry}}</td>
+          </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section">
+    <div class="row">
+      <div class="col s12">
+        <form (ngSubmit)="handleAddComment()">
+          <div class="row">
+            <div class="input-field col s10 offset-s1 m8 offset-m2">
+              <textarea [(ngModel)]="comment" id="comment" name="comment" class="materialize-textarea" required="required"></textarea>
+              <label for="comment">Comment</label>
+            </div>
+          </div>
+          <div class="row">
+            <button type="submit" class="btn">Comment</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <form (ngSubmit)="handleAddReaction()">
+          <div class="row">
+            <div class="input-field col s10 offset-s1 m8 offset-m2">
+              <select required [(ngModel)]="reaction" name="selectedOption" materialize="material_select" [materializeSelectOptions]="selectOptions">
+                <option value="" disabled selected>Choose your reaction</option>
+                <option *ngFor="let option of selectOptions" [value]="option">{{option}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <button type="submit" class="btn">React</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col s12 z-depth-1 round">
+
+      <h4>Comments</h4>
+
+      <div class="row" *ngFor="let comment of comments">
+
+        <div class="col border round s10 offset-s1">
+
+          <div class="row">
+            <h5>{{comment.user}}</h5>
+            <small>{{comment.createdOn | dateAgo}}</small>
+            <div class="divider"></div>
+          </div>
+
+          <div class="row no-margin">
+            <p>{{comment.message}}</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div *ngIf="!comments.length">
+        <h5>No comments available.</h5>
+      </div>
+
+    </div>
+  </div>
+
+</div>

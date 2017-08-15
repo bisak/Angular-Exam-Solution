@@ -1,0 +1,79 @@
+<nav class="teal lighten-1">
+  <div class="nav-wrapper">
+    <div class="container">
+
+      <a [routerLink]="['/']" class="brand-logo center">Angular Exam</a>
+
+      <a materialize="sideNav" [materializeParams]="[{closeOnClick: true, draggable: true}]"
+         data-activates="mobile-demo" class="button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
+
+      <ul class="left hide-on-med-and-down">
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="routerLinkOpts">
+          <a [routerLink]="['/']">Home</a>
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="routerLinkOpts">
+          <a [routerLink]="['/animals', 'all']">All Animals</a>
+        </li>
+        <li *ngIf="authHelperService.isLoggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="routerLinkOpts">
+          <a [routerLink]="['/animals', 'mine']">My Animals</a>
+        </li>
+      </ul>
+
+      <ul class="right hide-on-med-and-down">
+
+        <li *ngIf="!authHelperService.isLoggedIn()" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="routerLinkOpts"><a
+          [routerLink]="['/login']">Login</a></li>
+
+        <li *ngIf="!authHelperService.isLoggedIn()" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="routerLinkOpts"><a [routerLink]="['/register']">Register</a>
+        </li>
+
+        <li *ngIf="authHelperService.isLoggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="routerLinkOpts">
+          <a [routerLink]="['/animals', 'add']">Add Animal</a>
+        </li>
+
+        <li *ngIf="authHelperService.isLoggedIn()"><a class="white-text" (click)="onLogoutClick()">Logout</a></li>
+
+      </ul>
+
+
+      <ul class="side-nav" id="mobile-demo">
+
+        <li *ngIf="!authHelperService.isLoggedIn()"><h3 class="blue-text center"><strong>Angular Exam</strong>
+        </h3>
+        </li>
+
+        <li *ngIf="!authHelperService.isLoggedIn()" class="divider"></li>
+
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="routerLinkOpts">
+          <a [routerLink]="['/']">Home</a>
+        </li>
+        <li *ngIf="authHelperService.isLoggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="routerLinkOpts">
+          <a [routerLink]="['/animals', 'add']">Add Animal</a>
+        </li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="routerLinkOpts">
+          <a [routerLink]="['/animals', 'all']">All Animals</a>
+        </li>
+        <li *ngIf="authHelperService.isLoggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="routerLinkOpts">
+          <a [routerLink]="['/animals', 'mine']">My Animals</a>
+        </li>
+        <li *ngIf="!authHelperService.isLoggedIn()" class="divider"></li>
+
+        <li *ngIf="!authHelperService.isLoggedIn()" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="routerLinkOpts"><a
+          [routerLink]="['login']">Login</a></li>
+
+        <li *ngIf="!authHelperService.isLoggedIn()" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="routerLinkOpts"><a [routerLink]="['/register']">Register</a>
+        </li>
+        <li *ngIf="authHelperService.isLoggedIn()" class="divider"></li>
+        <li *ngIf="authHelperService.isLoggedIn()"><a (click)="onLogoutClick()">Logout</a></li>
+
+      </ul>
+
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,11 @@
+<div class="container">
+  <h4 class="center">My animals</h4>
+  <div class="row">
+    <div class="col">
+      <app-list-product [showDelete]="true" *ngFor="let animal of animals" [animal]="animal"></app-list-product>
+    </div>
+    <div class="row center" *ngIf="animals?.length == 0">
+      No animals found.
+    </div>
+  </div>
+</div>

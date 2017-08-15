@@ -1,0 +1,21 @@
+<div #mySelf class="row z-depth-1 inner-padding">
+  <div class="col s12">
+    <div class="col m4">
+      <a routerLink="/animals/details/{{animal.id}}">
+        <img [src]="animal.image" class="responsive-img round" alt="animal image">
+      </a>
+    </div>
+    <div class="col m6 break-word">
+      <a routerLink="/animals/details/{{animal.id}}">
+        <p class="name no-margin-top"><strong>{{animal.name}}</strong></p>
+      </a>
+    </div>
+    <div class="col m2 center center-block hide-on-small-and-down">
+      <a class="waves-effect waves-teal btn-flat details-btn"
+         routerLink="/animals/details/{{animal.id}}">Details</a>
+      <a *ngIf="showDelete" class="waves-effect waves-red btn-flat delete-btn red-text"
+         (click)="handleDelete(mySelf)">Delete</a>
+
+    </div>
+  </div>
+</div>

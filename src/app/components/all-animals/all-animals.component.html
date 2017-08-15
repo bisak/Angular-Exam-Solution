@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row search">
+    <app-search class="col m6 offset-m3 s8 offset-s2" [query]="search" (onSearch)="handleSearch($event)"></app-search>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-list-product *ngFor="let animal of animals" [animal]="animal"></app-list-product>
+    </div>
+    <div class="row center" *ngIf="animals?.length == 0">
+      No animals found.
+    </div>
+  </div>
+  <div class="row">
+    <app-pagination [currentPage]="currentPage" [totalPages]="10" [search]="search"></app-pagination>
+  </div>
+</div>
